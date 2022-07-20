@@ -24,7 +24,8 @@ $(document).ready(function(){
 			$('#formulario_pacientes #validate').removeClass('bien_email');
 			$('#formulario_pacientes #validate').removeClass('error_email');
 			$("#formulario_pacientes #correo").css("border-color", "none");
-			$('#formulario_pacientes #validate').html('');			
+			$('#formulario_pacientes #validate').html('');	
+			$('#formulario_pacientes #identidad').attr('readonly', false);		
 			$('#formulario_pacientes').attr({ 'data-form': 'save' }); 
 			$('#formulario_pacientes').attr({ 'action': '<?php echo SERVERURL; ?>php/pacientes/agregarPacientes.php' });	
 			$('#modal_pacientes').modal({
@@ -367,6 +368,8 @@ function editarRegistro(pacientes_id){
 					$('#formulario_pacientes #responsable').val(datos[13]);
 					$('#formulario_pacientes #responsable_id').val(datos[14]);
 					$('#formulario_pacientes #profesion_pacientes').val(datos[15]);
+					$('#formulario_pacientes #identidad').val(datos[16]);
+					$('#formulario_pacientes #identidad').attr('readonly', true);
 					$("#formulario_pacientes #fecha").attr('readonly', true);
 					$("#formulario_pacientes #expediente").attr('readonly', true);
 					$('#formulario_pacientes #validate').removeClass('bien_email');

@@ -11,7 +11,7 @@ $fecha_registro = date("Y-m-d H:i:s");
 $usuario = $_SESSION['colaborador_id'];	
 
 $consulta_expediente = "SELECT pacientes_id,  nombre, apellido, identidad, telefono1, telefono2, fecha_nacimiento, fecha, email, genero, localidad,
-(CASE WHEN estado = '1' THEN 'Activo' ELSE 'Inactivo' END) AS 'estado',
+(CASE WHEN estado = '1' THEN 'Activo' ELSE 'Inactivo' END) AS 'estado', departamento_id, municipio_id,
 (CASE WHEN expediente = '0' THEN 'TEMP' ELSE expediente END) AS 'expediente', departamento_id, municipio_id, pais_id, responsable, responsable_id, profesion_id
 	FROM pacientes
 	WHERE pacientes_id = '$pacientes_id'";
