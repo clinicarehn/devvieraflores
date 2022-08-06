@@ -94,6 +94,7 @@ $(document).ready(pagination(1));puesto();empresa();servicio();pagination_jornad
 		  $('#formulario_asignacion_servicios_colaboradores #edi').hide();
 		  $('#formulario_asignacion_servicios_colaboradores #reg_asignacion').show();
 		  pagination_servicio(1);
+		  getServicioAsignacion();
 
 		  $('#formulario_asignacion_servicios_colaboradores').attr({ 'data-form': 'save' }); 
 		  $('#formulario_asignacion_servicios_colaboradores').attr({ 'action': '<?php echo SERVERURL; ?>php/colaboradores/agregarAsignacionServicio.php' });
