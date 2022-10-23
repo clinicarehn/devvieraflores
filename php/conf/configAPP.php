@@ -4,7 +4,7 @@
     */
 	date_default_timezone_set('America/Tegucigalpa');
     const SERVERURL = "http://localhost/githubVieraflores/";
-	const SERVEREMPRESA = "Claudia Flores";
+	const SERVEREMPRESA = "Viera Flores y Asociados";
 	const SERVER = "localhost";
     const DB = "clinicarehn_clinicare_claudiaflores";
     const USER = "clinicarehn_clinicare";

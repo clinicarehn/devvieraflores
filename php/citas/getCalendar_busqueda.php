@@ -8,12 +8,13 @@ header('Content-Type: application/json');
 
 $fecha_registro = date('Y-m-d');
 $servicio = $_POST['servicio'];
+$colaborador_id = $_POST['colaborador_id'];
 
 $sql = "SELECT a.agenda_id AS agenda_id, a.pacientes_id AS pacientes_id, a.expediente AS expediente, CONCAT(p.nombre,' ',p.apellido) AS nombre, a.fecha_cita AS start, a.fecha_cita_end AS end, a.color AS color 
 	  FROM agenda AS a
 	  INNER JOIN pacientes AS p
 	  ON a.pacientes_id = p.pacientes_id
-	  WHERE a.status = 0 AND cast(a.fecha_cita as date) >= '$fecha_registro' AND servicio_id = '$servicio'
+	  WHERE a.status = 0 AND cast(a.fecha_cita as date) >= '$fecha_registro' AND a.servicio_id = '$servicio' AND a.colaborador_id = '$colaborador_id'
 	  ORDER BY a.pacientes_id, a.fecha_cita";	
 $result = $mysqli->query($sql);		  
 

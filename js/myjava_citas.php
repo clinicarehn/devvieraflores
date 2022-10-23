@@ -31,7 +31,7 @@ $(document).ready(function() {
 		slotLabelInterval: '00:20:00',
         minTime: "08:00:00",
         maxTime: "23:59:59",
-        slotDuration: "00:60:00",
+        slotDuration: "00:30:00",
 		editable: true,
 		eventLimit: true, // allow "more" link when too many events
 		selectable: true,
@@ -1384,13 +1384,15 @@ function getHoraInicio(dato){
 function actualizarEventos(){
 	if ($('#botones_citas #servicio').val() != ""){
 		var servicio_id = $('#botones_citas #servicio').val();
+		var medico_general = $('#botones_citas #medico_general').val();
+
         var url = '<?php echo SERVERURL; ?>php/citas/getCalendar_busqueda.php'; 
 		
 	    $.ajax({
           type: "POST",
           url: url,
 		  async: true,
-          data:'&servicio='+servicio_id,
+          data:'&servicio='+servicio_id+'&colaborador_id='+medico_general,
           success: function(events){
               $('#calendar').fullCalendar('removeEvents');
               $('#calendar').fullCalendar('addEventSource', events);         

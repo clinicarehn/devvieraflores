@@ -1,6 +1,6 @@
 <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
-  <a class="navbar-brand" href="#"><a href="#"><img src="<?php echo SERVERURL; ?>img/logo.png" width="150" height="30" alt=""/></a></a>
+  <a class="navbar-brand" href="#"><a href="#"><img src="<?php echo SERVERURL; ?>img/logo_icono.png" width="60" height="50" alt=""/></a></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
