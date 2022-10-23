@@ -17,7 +17,10 @@
 	</li>
 	<li class="nav-item waves-effect waves-light">
 		<a class="nav-link" id="seguimiento_tab" data-toggle="tab" href="#seguimiento" role="tab" aria-controls="referencia_form1" aria-selected="false">Seguimiento</a>
-	</li>                
+	</li>  
+	<li class="nav-item waves-effect waves-light">
+		<button class="btn btn-dark ml-2" type="submit" id="end_atencion"><div class="sb-nav-link-icon"></div><i class="fas fa-window-close"></i> Finalizar Atención</button>
+	</li>	              
 </ul>
 <!--FIN MENU TAB CONTENT-->
 
@@ -468,15 +471,25 @@
 					<div class="form-row">
 						<div class="col-md-3 mb-3">
 							<label for="peso_aten">Peso</label>
-							<input type="text" class="form-control" name="peso_aten" id="peso_aten" placeholder="Peso" maxlength="30"/>
+							<div class="input-group mb-3">								
+								<input type="text" id="peso_aten" name="peso_aten" class="form-control" step="0.01"/>
+								<div class="input-group-append">	
+									<span class="input-group-text"><div class="sb-nav-link-icon"></div>KG</i></span>
+								</div>
+							</div>								
 						</div>
 						<div class="col-md-3 mb-3">
 							<label for="talla_aten">Talla</label>
-							<input type="text" class="form-control" name="talla_aten" id="talla_aten" placeholder="Talla" maxlength="30"/>
+							<div class="input-group mb-3">								
+								<input type="number" id="talla_aten" name="talla_aten" class="form-control" step="0.01"/>
+								<div class="input-group-append">	
+									<span class="input-group-text"><div class="sb-nav-link-icon"></div>m</i></span>
+								</div>
+							</div>								
 						</div>	
 						<div class="col-md-3 mb-3">
 							<label for="imc_aten">IMC</label>
-							<input type="text" class="form-control" name="imc_aten" id="imc_aten" placeholder="IMC" maxlength="30"/>
+							<input type="text" class="form-control" name="imc_aten" id="imc_aten" placeholder="IMC" maxlength="30" readonly />
 						</div>
 						<div class="col-md-3 mb-3">
 							<label for="orl_aten">ORL</label>
@@ -486,7 +499,7 @@
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
 							<label for="mamas_aten">Mamas</label>
-							<input type="text" class="form-control" name="mamas_aten" id="mamas_aten" placeholder="Mamas" maxlength="30"/>
+							<input type="text" class="form-control" name="mamas_aten" id="mamas_aten" placeholder="Mamas" maxlength="254"/>
 						</div>					
 					</div>						
 					<div class="form-row">
@@ -516,27 +529,20 @@
 							<label for="fm_aten">FM</label>
 							<input type="text" class="form-control" name="fm_aten" id="fm_aten" maxlength="100" placeholder="FM" maxlength="30"/>
 						</div>						
-					</div>	
+					</div>				
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
-							<label for="presentacion_aten">Presentación</label>
-							<input type="text" class="form-control" name="presentacion_aten" id="presentacion_aten" placeholder="Presentación" maxlength="30"/>
-						</div>					
-					</div>
-					<div class="form-row">
-						<div class="col-md-12 mb-3">
-							<label for="inspe_visual">Inspección Visual</label>
-							<input type="text" class="form-control" name="inspe_visual" id="inspe_visual" placeholder="Inspección Visual" maxlength="30"/>
-						</div>					
-					</div>					
-					<div class="form-row">
-						<div class="col-md-6 mb-3">
-							<label for="espesculoscopia">Especuloscopía</label>
-							<input type="text" class="form-control" name="espesculoscopia" id="espesculoscopia" placeholder="Especuloscopía" maxlength="30"/>
-						</div>
-						<div class="col-md-6 mb-3">
-							<label for="tbm_aten">TBM</label>
-							<input type="text" class="form-control" name="tbm_aten" id="tbm_aten" placeholder="TBM" maxlength="30"/>
+							<label for="tbm_aten">Ginecologico</label>
+							<div class="input-group">
+							  <textarea id="ginecologico" name="ginecologico" placeholder="Ginecologico" class="form-control" maxlength="2000" rows="8"></textarea>	
+							  <div class="input-group-prepend">						  
+								<span class="input-group-text">
+									<i class="btn btn-outline-success fas fa-microphone-alt" id="search_ginecologico_start"></i>
+									<i class="btn btn-outline-success fas fa-microphone-slash" id="search_ginecologico_stop"></i>
+								</span>
+							  </div>								  
+							</div>	
+							<p id="charNum_ginecologico">1000 Caracteres</p>
 						</div>						
 					</div>						
 					<div class="form-row">
@@ -559,17 +565,10 @@
 					</div>	
 					<div class="form-row">
 						<div class="col-md-12 mb-3">
-							<label for="manejo">Manejo</label>
-							<input type="text" class="form-control" name="manejo" id="manejo" placeholder="Manejo" maxlength="254"/>
+							<label for="manejo">Tratamiento</label>
+							<input type="text" class="form-control" name="tratamiento" id="tratamiento" placeholder="Tratamiento" maxlength="254"/>
 						</div>					
 					</div>	
-					<div class="form-row">
-						<div class="col-md-12 mb-3">
-							<label for="receta">Receta</label>
-							<input type="text" class="form-control" name="receta" id="receta" placeholder="Receta" maxlength="254"/>
-						</div>					
-					</div>						
-					
 				  </div>
 				</div>
 			</form>
@@ -584,7 +583,10 @@
 	<!-- INICIO SEGUIMIENTO-->
 	<div class="tab-pane fade" id="seguimiento" role="tabpanel" aria-labelledby="home-tab">
 		<div class="modal-body">
-			<form class="FormularioAjax" id="formulario_seguimiento" data-async data-target="#rating-modal" action="" method="POST" data-form="" autocomplete="off" enctype="multipart/form-data">			
+			<form class="FormularioAjax" id="formulario_seguimiento" data-async data-target="#rating-modal" action="" method="POST" data-form="" autocomplete="off" enctype="multipart/form-data">		
+					<button class="btn btn-warning ml-2" form="formulario_seguimiento" type="submit" id="nuevoSegimiento"><div class="sb-nav-link-icon"></div><i class="far fa-file"></i> Nuevo Registro</button>
+					<br />
+					<br />
 					<input type="hidden" name="agenda_id" id="agenda_id" class="form-control">
 					<input type="hidden" name="pacientes_id" id="pacientes_id" class="form-control">
 					<input type="hidden" name="fecha_cita" id="fecha_cita" class="form-control">

@@ -298,6 +298,7 @@ $mysqli->close();//CERRAR CONEXIÓN
 		include "script.php"; 
 		
 		include "../js/main.php"; 
+		include "../js/invoice.php"; 	
 		include "../js/myjava_pacientes.php"; 
 		include "../js/select.php"; 	
 		include "../js/functions.php"; 

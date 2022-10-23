@@ -26,10 +26,9 @@ if($resultNumero->num_rows>0){
 }
 
 //CONSULTAMOS EL NUMERO MAXIMO PERMITIDO
-$queryNumeroMaximo = "SELECT CONVERT(rango_final, INT) AS 'numero'
+$queryNumeroMaximo = "SELECT rango_final AS 'numero'
 	FROM secuencia_facturacion
 	WHERE activo = 1 AND empresa_id = '$empresa_id'";
-
 $resultNumeroMaximo = $mysqli->query($queryNumeroMaximo) or die($mysqli->error);
 
 if($resultNumeroMaximo->num_rows>0){

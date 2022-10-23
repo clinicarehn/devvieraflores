@@ -165,11 +165,12 @@
 		</tfoot>
 	</table>
 	<div>
-	    <p class="nota"><?php 
+		<p class="nota"><?php 
 			if($consulta_registro["notas"] != ""){
-				echo "<p class='h3'><b>Nota:</b> ".$consulta_registro["notas"]."</p>";
+				echo "<p class='h2'><b>Nota:</b> ".nl2br($consulta_registro["notas"])."</p>";
 			}		
 		?></p>
+		<br />
 		<p class="nota"><center><?php echo convertir($total_despues_isv);?></center></p>
 		<p class="nota"></p>
 		<p class="nota">La factura es beneficio de todos "Exíjala"</p>	

@@ -53,7 +53,6 @@ if($result->num_rows>0){
 	$dias = $valores_array['dias'];	
 	/*********************************************************************************/		
 	
-	$no_factura_ = $consulta_registro['colaborador_id']."_".str_pad($consulta_registro['numero_factura'], $consulta_registro['relleno'], "0", STR_PAD_LEFT);
 	$no_factura = str_pad($consulta_registro['numero_factura'], $consulta_registro['relleno'], "0", STR_PAD_LEFT);
 
 	if($consulta_registro['estado'] == 3){
@@ -75,7 +74,7 @@ if($result->num_rows>0){
 	// Render the HTML as PDF
 	$dompdf->render();
 	
-	file_put_contents(dirname('__FILE__').'/Facturas/factura_'.$no_factura_.'.pdf', $dompdf->output());
+	file_put_contents(dirname('__FILE__').'/Facturas/factura_'.$no_factura.'.pdf', $dompdf->output());
 	
 	// Output the generated PDF to Browser
 	$dompdf->stream('factura_'.$no_factura.'.pdf',array('Attachment'=>0));

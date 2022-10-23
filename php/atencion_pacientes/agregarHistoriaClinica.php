@@ -51,15 +51,11 @@ $afu_aten = cleanString($_POST['afu_aten']);
 $fcf_aten = cleanString($_POST['fcf_aten']);
 $au_aten = cleanString($_POST['au_aten']);
 $fm_aten = cleanString($_POST['fm_aten']);
-$presentacion_aten = cleanString($_POST['presentacion_aten']);
-$inspe_visual = cleanString($_POST['inspe_visual']);
-$espesculoscopia = cleanString($_POST['espesculoscopia']);
-$tbm_aten = cleanString($_POST['tbm_aten']);
+$ginecologico = cleanString($_POST['ginecologico']);
 $extremidades = cleanString($_POST['extremidades']);
 $ultrasonido = cleanString($_POST['ultrasonido']);
 $diagnostico = cleanString($_POST['diagnostico']);
-$manejo = cleanString($_POST['manejo']);
-$receta = cleanString($_POST['receta']);
+$tratamiento = cleanString($_POST['tratamiento']);
 $fecha_registro = date("Y-m-d H:i:s");
 $estado_atencion = 1;
 $estado_agenda = 1;
@@ -91,7 +87,7 @@ $result_atencion = $mysqli->query($consultar_atencion) or die($mysqli->error);
 if($result_atencion->num_rows==0){//NO EXISTE LA ATENCION PROCEDEMOS A GUARDARLA
 	//INSERTAMOS LOS DATOS EN LA ENTIDAD historia_clinica
 	$historia_clinica_id = correlativo('historia_clinica_id', 'historia_clinica');
-	$insert = "INSERT INTO historia_clinica VALUES('$historia_clinica_id','$pacientes_id','$colaborador_id','$servicio_id','$fecha_cita','$gestas','$partos','$cesareas','$hijos_vivos','$hijos_muertos','$obitos','$abortos','$fum','$edad_gestacional','$tipo_rh','$vih_vdrl','$citologia','$mpf','$menarquia','$inicio_vida_sexual','$vida_sexual','$ciclos_menstruales','$duracion','$cantidad','$dismenorrea','$ante_perso_pato','$ante_fam_pato','$ant_hosp_trauma_quirur','$ant_inmuno_aler','$hab_toxicos','$motivo_consulta','$hist_enfe_actual','$pa_aten','$fc_aten','$fr_aten','$t_aten','$peso_aten','$talla_aten','$imc_aten','$orl_aten','$mamas_aten','$pulmones','$abdomen_aten','$afu_aten','$fcf_aten','$au_aten','$fm_aten','$presentacion_aten','$inspe_visual','$espesculoscopia','$tbm_aten','$extremidades','$ultrasonido','$diagnostico','$manejo','$receta','$estado_atencion','$fecha_registro')";
+	$insert = "INSERT INTO historia_clinica VALUES('$historia_clinica_id','$pacientes_id','$colaborador_id','$servicio_id','$fecha_cita','$gestas','$partos','$cesareas','$hijos_vivos','$hijos_muertos','$obitos','$abortos','$fum','$edad_gestacional','$tipo_rh','$vih_vdrl','$citologia','$mpf','$menarquia','$inicio_vida_sexual','$vida_sexual','$ciclos_menstruales','$duracion','$cantidad','$dismenorrea','$ante_perso_pato','$ante_fam_pato','$ant_hosp_trauma_quirur','$ant_inmuno_aler','$hab_toxicos','$motivo_consulta','$hist_enfe_actual','$pa_aten','$fc_aten','$fr_aten','$t_aten','$peso_aten','$talla_aten','$imc_aten','$orl_aten','$mamas_aten','$pulmones','$abdomen_aten','$afu_aten','$fcf_aten','$au_aten','$fm_aten','$ginecologico','$extremidades','$ultrasonido','$diagnostico','$tratamiento','$estado_atencion','$fecha_registro')";
 	$query = $mysqli->query($insert);
 
 	if($query){

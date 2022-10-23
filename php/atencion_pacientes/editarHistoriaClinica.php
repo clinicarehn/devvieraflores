@@ -72,15 +72,11 @@ $afu_aten = "";
 $fcf_aten = "";
 $au_aten = "";
 $fm_aten = "";
-$presentacion_aten = "";
-$inspe_visual = "";
-$espesculoscopia = "";
-$tbm_aten = "";
+$ginecologico = "";
 $extremidades = "";
 $ultrasonido = "";
 $diagnostico = "";
-$manejo = "";
-$receta = "";
+$tratamiento = "";
 
 //OBTENEMOS LOS VALORES DEL REGISTRO
 if($result->num_rows>0){
@@ -131,15 +127,11 @@ if($result->num_rows>0){
 	$fcf_aten = $consulta_registro['fcf_aten'];
 	$au_aten = $consulta_registro['au_aten'];	
 	$fm_aten = $consulta_registro['fm_aten'];
-	$presentacion_aten = $consulta_registro['presentacion_aten'];
-	$inspe_visual = $consulta_registro['inspe_visual'];	
-	$espesculoscopia = $consulta_registro['espesculoscopia'];
-	$tbm_aten = $consulta_registro['tbm_aten'];	
+	$ginecologico = $consulta_registro['ginecologico'];	
 	$extremidades = $consulta_registro['extremidades'];
 	$ultrasonido = $consulta_registro['ultrasonido'];	
 	$diagnostico = $consulta_registro['diagnostico'];
-	$manejo = $consulta_registro['manejo'];
-	$receta = $consulta_registro['receta'];		
+	$tratamiento = $consulta_registro['tratamiento'];	
 }
 
 $datos = array(
@@ -189,15 +181,11 @@ $datos = array(
 	 43 => $fcf_aten, 
 	 44 => $au_aten, 	 
 	 45 => $fm_aten, 	 
-	 46 => $presentacion_aten, 
-	 47 => $inspe_visual, 	
-	 48 => $espesculoscopia, 
-	 49 => $tbm_aten, 
-	 50 => $extremidades,	 
-	 51 => $ultrasonido, 	 
-	 52 => $diagnostico, 
-	 53 => $manejo,
-	 54 => $receta 	 
+	 46 => $ginecologico, 
+	 47 => $extremidades,	 
+	 48 => $ultrasonido, 	 
+	 49 => $diagnostico, 
+	 50 => $tratamiento,	 
 );	
 	
 echo json_encode($datos);

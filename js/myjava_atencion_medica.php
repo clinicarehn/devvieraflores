@@ -660,16 +660,12 @@ function setHistoriaClinica(pacientes_id, colaborador_id, agenda_id){
 			$('#formulario_primera_consulta #afu_aten').val(datos[42]);
 			$('#formulario_primera_consulta #fcf_aten').val(datos[43]);
 			$('#formulario_primera_consulta #au_aten').val(datos[44]);
-			$('#formulario_primera_consulta #fm_aten').val(datos[45]);
-			$('#formulario_primera_consulta #presentacion_aten').val(datos[46]);
-			$('#formulario_primera_consulta #inspe_visual').val(datos[47]);
-			$('#formulario_primera_consulta #espesculoscopia').val(datos[48]);	
-			$('#formulario_primera_consulta #tbm_aten').val(datos[49]);					
-			$('#formulario_primera_consulta #extremidades').val(datos[50]);
-			$('#formulario_primera_consulta #ultrasonido').val(datos[51]);
-			$('#formulario_primera_consulta #diagnostico').val(datos[52]);
-			$('#formulario_primera_consulta #manejo').val(datos[53]);
-			$('#formulario_primera_consulta #receta').val(datos[54]);
+			$('#formulario_primera_consulta #fm_aten').val(datos[45]);	
+			$('#formulario_primera_consulta #ginecologico').val(datos[46]);					
+			$('#formulario_primera_consulta #extremidades').val(datos[47]);
+			$('#formulario_primera_consulta #ultrasonido').val(datos[48]);
+			$('#formulario_primera_consulta #diagnostico').val(datos[49]);
+			$('#formulario_primera_consulta #tratamiento').val(datos[50]);
 
 			caracteresAntecedentesPatologicos();
 			caracteresAntecedentesFamiliaresPatologicos();
@@ -678,6 +674,7 @@ function setHistoriaClinica(pacientes_id, colaborador_id, agenda_id){
 			caracteresAntecedentesInmunoAlergicos();
 			caracteresHabitosToxicos();
 			caracteresHistoriaEnfermedadActual();
+			caracteresGinecologico();
 
 			$('#formulario_primera_consulta').attr({ 'data-form': 'update' }); 
 			$('#formulario_primera_consulta').attr({ 'action': '<?php echo SERVERURL; ?>php/atencion_pacientes/modificarHistoriaClinica.php' });
@@ -1673,7 +1670,7 @@ function showFactura(agenda_id){
 		    $('#formulario_facturacion #eliminar').hide();
 			limpiarTabla();				
 			
-			$('#main_facturacion').hide();	
+			$('#main_atencion').hide();	
 			$('#facturacion').show();
 			
 			$('#formulario_facturacion').attr({ 'data-form': 'save' }); 
@@ -2092,9 +2089,33 @@ function caracteresHistoriaEnfermedadActual(){
 	}
 }
 
+$('#formulario_primera_consulta #ginecologico').keyup(function() {
+	    var max_chars = 2000;
+        var chars = $(this).val().length;
+        var diff = max_chars - chars;
+		
+		$('#formulario_primera_consulta #charNum_ginecologico').html(diff + ' Caracteres'); 
+		
+		if(diff == 0){
+			return false;
+		}
+});
+
+function caracteresGinecologico(){
+	var max_chars = 1000;
+	var chars = $('#formulario_primera_consulta #ginecologico').val().length;
+	var diff = max_chars - chars;
+	
+	$('#formulario_primera_consulta #charNum_ginecologico').html(diff + ' Caracteres'); 
+	
+	if(diff == 0){
+		return false;
+	}
+}
+
 //FORMULARIO SEGUMIENTO
 $('#formulario_seguimiento #hist_enfe_actual_seguimiento').keyup(function() {
-	    var max_chars = 2000;
+	    var max_chars = 1000;
         var chars = $(this).val().length;
         var diff = max_chars - chars;
 		
@@ -2439,6 +2460,43 @@ $(document).ready(function() {
 	});	
 
 	/*###############################################################################################################################*/
+	$('#formulario_primera_consulta #search_ginecologico_stop').hide();
+	
+    var recognition = new webkitSpeechRecognition();
+    recognition.continuous = true;
+    recognition.lang = "es";
+	
+    $('#formulario_primera_consulta #search_ginecologico_start').on('click',function(event){
+		$('#formulario_primera_consulta #search_hist_enfe_actual_start').hide();
+		$('#formulario_primera_consulta #search_ginecologico_stop').show();
+		recognition.start();
+		
+		recognition.onresult = function (event) {
+			finalResult = '';
+			var valor_anterior  = $('#formulario_primera_consulta #ginecologico').val();
+			for (var i = event.resultIndex; i < event.results.length; ++i) {
+				if (event.results[i].isFinal) {
+					finalResult = event.results[i][0].transcript;
+					if(valor_anterior != ""){
+						$('#formulario_primera_consulta #ginecologico').val(valor_anterior + ' ' + finalResult);
+						caracteresGinecologico();
+					}else{
+						$('#formulario_primera_consulta #ginecologico').val(finalResult);
+						caracteresGinecologico();
+					}				
+				}
+			}
+		};		
+		return false;
+    });	
+	
+	$('#formulario_primera_consulta #search_ginecologico_stop').on("click", function(event){
+		$('#formulario_primera_consulta #search_ginecologico_start').show();
+		$('#formulario_primera_consulta #search_ginecologico_stop').hide();
+		recognition.stop();
+	});		
+
+	/*###############################################################################################################################*/
 	$('#formulario_seguimiento #search_hist_enfe_actual_stop').hide();
 	
     var recognition = new webkitSpeechRecognition();
@@ -2586,7 +2644,7 @@ $(document).ready(function() {
 		recognition.stop();
 	});	
 
-		/*###############################################################################################################################*/
+	/*###############################################################################################################################*/
 	$('#formulario_seguimiento #search_receta_medicamentos_seguimiento_stop').hide();
 	
     var recognition = new webkitSpeechRecognition();
@@ -2706,5 +2764,139 @@ function modalConsultaSeguimiento(seguimiento_id, colaborador_id){
 			return false;
 		}	
 	});	
+}
+
+function calculoIMC(){
+	var kg = 0.00;
+	var talla = 0.00;
+
+	if($("#formulario_primera_consulta #peso_aten").val() == "" || $("#formulario_primera_consulta #peso_aten").val() == null){
+		kg = 0.00;			
+	}else{
+		kg = parseFloat($("#formulario_primera_consulta #peso_aten").val());
+	}
+
+	if($("#formulario_primera_consulta #talla_aten").val() == "" || $("#primeformulario_primera_consultara_consulta #talla_aten").val() == null){
+		talla = 0.00;			
+	}else{
+		talla = parseFloat($("#formulario_primera_consulta #talla_aten").val());
+	}		
+	
+	var imc = 0.00;
+
+	kg = parseFloat(kg).toFixed(2);
+
+	if(talla == 0){
+		imc = 0;
+	}else{
+		imc = kg / (talla * talla);
+		imc = parseFloat(imc).toFixed(2);
+	}
+
+	if(kg == null || kg == ""){
+		kg = 0.0;
+	}
+
+	if(imc == null || imc == ""){
+		imc = 0.0;
+	}		
+
+	$("#formulario_primera_consulta #peso_kg").val(kg);
+	$("#formulario_primera_consulta #imc_aten").val(imc);		
+	alert(imc);
+}
+
+$("#formulario_primera_consulta #peso_aten").on("keyup", function(e){
+	calculoIMC();
+});	
+
+$("#formulario_primera_consulta #talla_aten").on("keyup", function(e){
+	calculoIMC();
+});	
+
+$("#nuevoSegimiento").on("click", function(e){
+	e.preventDefault();
+	$('#formulario_seguimiento')[0].reset();
+	$("#formulario_seguimiento #motivo_consulta_seguimiento").focus();
+	$('#ediSeg').hide();
+	$('#regSeg').show();
+});	
+
+//FINALIZAR ATENCION
+$('#end_atencion').on('click', function(e){
+	e.preventDefault();	
+	var nombre_usuario = consultarNombre(pacientes_id);
+	var expediente_usuario = consultarExpediente(pacientes_id);
+	var dato;
+
+	if(expediente_usuario == 0){
+		dato = nombre_usuario;
+	}else{
+		dato = nombre_usuario + " (Expediente: " + expediente_usuario + ")";
+	}
+
+	swal({
+		title: "¿Esta seguro?",
+		text: "¿Desea marcar la atención para el paciente: " + dato + " Atención culminada",
+		type: "input",
+		showCancelButton: true,
+		closeOnConfirm: false,
+		inputPlaceholder: "Comentario",
+		cancelButtonText: "Cancelar",	
+		confirmButtonText: "¡Sí, marcar la atención!",
+		confirmButtonClass: "btn-warning",	  
+	}, function (inputValue) {
+		if (inputValue === false) return false;
+		if (inputValue === "") {
+		swal.showInputError("¡Necesita escribir algo!");
+		return false
+		}
+		marcarAtencion($('#primera_consulta #agenda_id').val(), inputValue);
+	});	
+});
+
+function marcarAtencion(agenda_id, comentario, fecha){
+	var hoy = new Date();
+	fecha_actual = convertDate(hoy);
+
+	var url = '<?php echo SERVERURL; ?>php/atencion_pacientes/marcarAtencion.php';
+	
+    $.ajax({
+	  type:'POST',
+	  url:url,
+	  data:'agenda_id='+agenda_id+'&fecha='+fecha+'&comentario='+comentario,
+	  success: function(registro){
+		var datos = eval(registro);
+		
+		if (datos[1] == "AtencionMedica"){
+			showFactura(datos[2]);//LLAMAMOS LA FACTURA .-Función se encuenta en myjava_atencioN_medica.js
+		}
+		
+		if(datos[0] == 1){
+			swal({
+				title: "Success", 
+				text: "Atencion marcada correctamente",
+				type: "success",
+				timer: 1000, //timeOut for auto-close
+			});
+		}else if(datos[0] == 2){
+			swal({
+				title: "Error", 
+				text: "Error al marcar la atención",
+				type: "error", 
+				confirmButtonClass: 'btn-danger'
+			});
+			return false;		 
+		}else{
+			swal({
+				title: "Error", 
+				text: "Error al ejecutar esta acción",
+				type: "error", 
+				confirmButtonClass: 'btn-danger'
+			});				
+		}
+	  }
+   });
+   return false;		
 }
 </script>

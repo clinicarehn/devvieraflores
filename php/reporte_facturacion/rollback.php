@@ -41,21 +41,6 @@ if($result->num_rows>0){
 	$fecha_factura = $consultaDatosFactura['fecha_factura'];	
 }
 
-/*******************************************************************************************************************************************************************/
-//CONSULTAMOS EL NUMERO DE ATENCION
-$query_atencion = "SELECT atencion_id  
-    FROM atenciones_medicas
-	WHERE pacientes_id = '$pacientes_id' AND servicio_id = '$servicio_id' AND colaborador_id = '$colaborador_id' AND fecha = '$fecha_factura'";
-$result_atencion = $mysqli->query($query_atencion) or die($mysqli->error);
-$consultaDatosAtencion = $result_atencion->fetch_assoc();
-
-$atencion_id = "";
-
-if($result_atencion->num_rows>0){
-	$atencion_id = $consultaDatosAtencion['atencion_id'];	
-}
-/*******************************************************************************************************************************************************************/
-
 //ACTUALIZAMOS EL METODO DE PAGO, CAMBIAMOS EL ESTADO A CANCELADO
 $update_metodoPago = "UPDATE pagos SET estado = '$estado_pago' WHERE facturas_id = '$facturas_id'";
 $query = $mysqli->query($update_metodoPago) or die($mysqli->error);
@@ -65,12 +50,6 @@ if($query){
 	//ACTUALIZAMOS LA FACTURA, CAMBIAMOS EL ESTADO A CANCELADO
 	$update_factura = "UPDATE facturas SET estado = '$estado' WHERE facturas_id  = '$facturas_id'";
 	$mysqli->query($update_factura) or die($mysqli->error);
-	
-	/*********************************************************************************************************************************************************************/
-	//ACTUALIZAMOS EL ESTADO DE LA ATENCION PARA SABER SI SE PAGO O NO LA FACTURA
-	$update_atencion = "UPDATE atenciones_medicas SET estado = '$estado_atencion' WHERE atencion_id  = '$atencion_id'";
-	$mysqli->query($update_atencion) or die($mysqli->error);
-	/*********************************************************************************************************************************************************************/
 	
 	/*********************************************************************************************************************************************************************/
 	//INGRESAR REGISTROS EN LA ENTIDAD HISTORIAL

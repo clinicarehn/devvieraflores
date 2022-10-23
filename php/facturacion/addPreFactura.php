@@ -47,6 +47,7 @@ if($pacientes_id != "" && $colaborador_id != "" && $servicio_id != ""){
 			$descuentos = 0;
 			$isv_neto = 0;
 			$total_despues_isv = 0;
+			$isv_valor = 0;
 			
 			for ($i = 0; $i < count( $_POST['productName']); $i++){//INICIO DEL CICLO
 					$facturas_detalle_id = correlativo("facturas_detalle_id","facturas_detalle");
