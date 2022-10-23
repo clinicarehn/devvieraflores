@@ -18,7 +18,7 @@ p, label, span, table{
 	font-family: 'Helvetica';
 	font-size: 11pt;
 	display: block;
-	background: #338AFF;
+	background: #e49eb4;/*Detalle de numero de factura y datos del cliente*/
 	color: #FFF;
 	text-align: center;
 	padding: 3px;
@@ -86,7 +86,7 @@ p, label, span, table{
 	border-collapse: collapse;
 }
 #factura_detalle thead th{
-	background: #FCA629;
+	background:  #b4b4b4;/*Encabezado de la tabla, detalle de productos*/
 	color: #FFF;
 	padding: 5px;
 }
