@@ -104,7 +104,7 @@ $('.FormularioAjax').submit(function(e){
 				llenarTabla(datos[6]);
 				
 				if (datos[6] == "AtencionMedica"){
-					//showFactura(datos[8]);//LLAMAMOS LA FACTURA .-Función se encuenta en myjava_atencioN_medica.js
+					showFactura(datos[8]);//LLAMAMOS LA FACTURA .-Función se encuenta en myjava_atencioN_medica.js
 				}
 				
                 if (datos[6] == "formPacientesAtencion"){

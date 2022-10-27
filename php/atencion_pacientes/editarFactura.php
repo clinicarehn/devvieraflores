@@ -17,6 +17,7 @@ $query = "SELECT p.pacientes_id AS pacientes_id, CONCAT(p.nombre, ' ', p.apellid
 	INNER JOIN servicios AS s
 	ON a.servicio_id = s.servicio_id
 	WHERE a.agenda_id = '$agenda_id'";	
+
 $result = $mysqli->query($query) or die($mysqli->error); 
      
 $pacientes_id = "";

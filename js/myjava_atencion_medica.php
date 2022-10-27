@@ -2776,7 +2776,7 @@ function calculoIMC(){
 		kg = parseFloat($("#formulario_primera_consulta #peso_aten").val());
 	}
 
-	if($("#formulario_primera_consulta #talla_aten").val() == "" || $("#primeformulario_primera_consultara_consulta #talla_aten").val() == null){
+	if($("#formulario_primera_consulta #talla_aten").val() == "" || $("#formulario_primera_consulta #talla_aten").val() == null){
 		talla = 0.00;			
 	}else{
 		talla = parseFloat($("#formulario_primera_consulta #talla_aten").val());
@@ -2802,8 +2802,7 @@ function calculoIMC(){
 	}		
 
 	$("#formulario_primera_consulta #peso_kg").val(kg);
-	$("#formulario_primera_consulta #imc_aten").val(imc);		
-	alert(imc);
+	$("#formulario_primera_consulta #imc_aten").val(imc);
 }
 
 $("#formulario_primera_consulta #peso_aten").on("keyup", function(e){
