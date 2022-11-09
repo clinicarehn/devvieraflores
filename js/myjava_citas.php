@@ -46,7 +46,7 @@ $(document).ready(function() {
 		
 		select: function(start, end) {
 		  if(getFechaAusencias(moment(start).format('YYYY-MM-DD HH:mm:ss'), $('#botones_citas #medico_general').val()) == 2){
-			if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+			if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
                  $("#ModalAdd_enviar").attr('disabled', false);			   				
 			     if ($('#medico_general').val()!="" && $('#servicio').val()!=""){
 				     $('#form-addevent')[0].reset();	
@@ -102,7 +102,7 @@ $(document).ready(function() {
 		},
 		eventRender: function(event, element) {
 		  element.bind('dblclick', function() { 
-              if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+              if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 				 $("#ModalEdit_enviar").attr('disabled', false);			   
 	             $("#ModalImprimir_enviar").attr('disabled', false);
 		         $('#form-editevent')[0].reset();		  
@@ -245,7 +245,7 @@ $(document).ready(function(){
 });
 /*FIN DE FUNCIONES PARA ESTABLECER EL FOCUS PARA LAS VENTANAS MODALES*/
 $('#formulario_reportes #reportes_exportar').on('click', function(e){
-if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){	
+if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){	
 	e.preventDefault();
 	if($('#reporte_servicio').val() != ""){
 	   reporteEXCEL();
@@ -268,7 +268,7 @@ if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() 
 });
 			
 $('#botones_citas #ausencias').on('click', function(e){ // add event submit We don't want this to act as a link so cancel the link action
- if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+ if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 	 e.preventDefault();
 	 $('#formulario_ausencias')[0].reset();
       pagination_ausencias(1);	 
@@ -310,7 +310,7 @@ $('#botones_citas #config_edades').on('click', function(e){ // add event submit 
 });
 
 $('#botones_citas #sobrecupo').on('click', function(e){ // add event submit We don't want this to act as a link so cancel the link action
- if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+ if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 	 e.preventDefault();
 	 $('#formulario_sobrecupo')[0].reset();
       pagination_ausencias(1);	 
@@ -331,7 +331,7 @@ $('#botones_citas #sobrecupo').on('click', function(e){ // add event submit We d
 });
 
 $('#botones_citas #historial_nopresento').on('click', function(e){ // add event submit We don't want this to act as a link so cancel the link action
-if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
      e.preventDefault();
 	 $('#form-buscarhistorialno')[0].reset();
      pagination_busqueda_historial_nopresento(1);	 
@@ -372,7 +372,7 @@ if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() 
 });
 
 $('#botones_citas #historial').on('click', function(e){ // add event submit We don't want this to act as a link so cancel the link action
-if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
      e.preventDefault();
 	 $('#form-buscarhistorial')[0].reset();
      pagination_busqueda_historial(1);	 
@@ -393,7 +393,7 @@ if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() 
 });
 
 $('#botones_citas #search').on('click', function(e){ // add event submit We don't want this to act as a link so cancel the link action
-if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
      e.preventDefault();
 	 $('#form-buscarcita')[0].reset();
      pagination_busqueda(1);	 
@@ -449,7 +449,7 @@ $('#mensaje_status #mensaje_status_refresh').on('click', function(e){ // add eve
 });
 
 $('#ModalDelete_enviar').on('click', function(e){ // delete event clicked // We don't want this to act as a link so cancel the link action
-if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 	 if ($('#fecha_citaedit').val() == "" || $('#fecha_citaeditend').val() == "" ){
 		$('#form-editevent')[0].reset();
 		swal({
@@ -517,7 +517,7 @@ $('#reg_buscarausencias').on('click', function(e){ // delete event clicked // We
 
 $('#botones_citas #refresh').on('click', function(e){ // delete event clicked // We don't want this to act as a link so cancel the link action
 	e.preventDefault();
-	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+	if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 		 if ( $('#botones_citas #servicio').val() == ""){
 			swal({
 				title: "Error", 
@@ -1595,7 +1595,7 @@ $(document).ready(function() {
 
 
 function eliminarRegistro(id){	
- if (getUsuarioSistema() == 1 || getUsuarioSistema() == 3 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
+ if (getUsuarioSistema() == 1 || getUsuarioSistema() == 2 || getUsuarioSistema() == 5 || getUsuarioSistema() == 6){
 	var url = '<?php echo SERVERURL; ?>php/citas/eliminar.php';
 
 	$.ajax({
