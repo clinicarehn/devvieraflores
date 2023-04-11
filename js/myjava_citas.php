@@ -1328,8 +1328,11 @@ function getColaborador_id(dato){
 				});				 
 				return false;				  
 		  }else{;			 			 
-		 	  $('#ModalEdit #medico1').val(data);	
-			  $('#ModalEdit #colaborador').val(data);	  
+		 	  $('#ModalEdit #medico1').val(data);
+			   $('#ModalEdit #medico1').selectpicker('refresh'); 
+
+			  $('#ModalEdit #colaborador').val(data);
+			  $('#ModalEdit #colaborador').selectpicker('refresh'); 
 		  }		  		  		  			  
 		 }
 	});
@@ -1375,7 +1378,8 @@ function getHoraInicio(dato){
 		async: true,
 		data:'agenda_id='+dato,
 		success:function(data){			
-		   $('#ModalEdit #hora_nueva').val(data); 		   
+		   $('#ModalEdit #hora_nueva').val(data); 
+		   $('#ModalEdit #hora_nueva').selectpicker('refresh');		   
 		}
 	});
 	return false;		
@@ -1475,7 +1479,8 @@ $(document).ready(function() {
 			async: true,
             data:'puesto_id='+puesto_id,
             success: function(data){
-				$('#medico_ausencia').html(data);				
+				$('#medico_ausencia').html(data);
+				$('#medico_ausencia').selectpicker('refresh');		
             }
          });
 		 
@@ -1972,9 +1977,11 @@ function getProfesionales(){
         success: function(data){
 		    $('#form-editevent #colaborador').html("");
 			$('#form-editevent #colaborador').html(data);
+			$('#form-editevent #colaborador').selectpicker('refresh');
 
 		    $('#formulario_ausencias #medico_ausencia').html("");
-			$('#formulario_ausencias #medico_ausencia').html(data);				
+			$('#formulario_ausencias #medico_ausencia').html(data);	
+			$('#formulario_ausencias #medico_ausencia').selectpicker('refresh');			
 		}			
      });	
 }	
@@ -2271,6 +2278,7 @@ var view_colaboradores_busqueda_dataTable = function(tbody, table){
 		e.preventDefault();
 		var data = table.row( $(this).parents("tr") ).data();		  
 		$('#form-editevent #colaborador').val(data.colaborador_id);
+		$('#form-editevent #colaborador').selectpicker('refresh');
 		$('#modal_busqueda_colaboradores').modal('hide');
 	});
 }

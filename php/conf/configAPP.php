@@ -10,7 +10,7 @@
 	const SERVER = "localhost";
     const DB = "clinicarehn_clientes_vierayasociados";
     const USER = "clinicarehn_clinicare";
-    const PASS = "Clin1c@r32022#%.";
+    const PASS = "Clin1c@r32022#";
     const PRODUCT_PATH = "/githubVieraflores/upload/";
 
     //DATOS DE CONEXION SERVIDOR PRINCIPAL
